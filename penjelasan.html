@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melestarikan Warisan Kuliner Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        html, body {
+    margin: 0;
+    padding: 0;
+    /* Memastikan tinggi minimal adalah satu layar penuh */
+    min-height: 100vh; 
+    /* Ganti kode warna sesuai dengan krem yang Anda inginkan */
+    background-color: #dbcca3; 
+}
+        /* --- PENGATURAN DASAR --- */
+        :root {
+            --dark-brown: #362217;
+            --light-cream: #f6f2eb;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--light-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+
+        /* --- LAYOUT UTAMA --- */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+            align-items: flex-start; /* Kunci agar gambar mengikuti tinggi teks */
+        }
+
+        /* --- HERO SECTION (BIJI KETAPANG) --- */
+        .hero {
+            background-color: var(--dark-brown);
+            color: var(--text-light);
+            padding: 60px 8%;
+            min-height: 80vh;
+        }
+
+        .hero .container { align-items: center; }
+
+        .content-left { flex: 1.2; }
+        .content-right { flex: 0.8; }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--text-light); }
+        .hero h2 { font-size: 2rem; margin-bottom: 1rem; color: #d4a373; }
+
+        /* --- ACCORDION STYLE --- */
+        .accordion {
+            background-color: rgba(72, 62, 62, 0.1);
+            color: rgb(245, 242, 242);
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: 1px solid rgba(106, 69, 69, 0.2);
+            text-align: left;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+
+        .light-section .accordion {
+            background-color: #eee;
+            color: var(--dark-brown);
+            border: 1px solid #ddd;
+        }
+
+        .accordion:after { content: '\002B'; }
+        .active:after { content: "\2212"; }
+
+        .panel {
+            padding: 0 18px;
+            background-color: rgba(0, 0, 0, 0.2);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .light-section .panel { background-color: #f9f9f9; }
+
+        .panel ul, .panel ol { padding: 20px; font-size: 0.95rem; }
+
+        /* --- GAMBAR STICKY --- */
+        .sticky-box {
+            position: sticky;
+            top: 20px;
+            width: 100%;
+        }
+
+        .main-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(14, 9, 9, 0.3);
+            display: block;
+        }
+
+        /* --- SECTION LAINNYA --- */
+        .section-padding { padding: 80px 8%; }
+        .light-section { background-color: var(--light-cream); color: var(--text-dark); }
+        
+        .ornament-divider {
+            width: 100%;
+            height: 40px;
+            background-image: radial-gradient(circle at 20px 0, transparent 20px, var(--light-cream) 21px);
+            background-size: 40px 40px;
+            background-repeat: repeat-x;
+            position: relative;
+            z-index: 5;
+            background-color: var(--dark-brown);
+        }
+
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .sticky-box { position: static; margin-top: 20px; }
+        }
+         /* Pola Ornamen Pembatas (Simulasi border melengkung) */
+        .ornament-divider {
+            width: 100%;
+            height: 40px;
+            background-image: radial-gradient(circle at 20px 0, transparent 20px, var(--light-cream) 21px);
+            background-size: 40px 40px;
+            background-repeat: repeat-x;
+            margin-top: -39px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .ornament-divider.dark {
+            background-image: radial-gradient(circle at 20px 0, transparent 20px, var(--dark-brown) 21px);
+            background-color: var(--light-cream);
+        }
+
+        /* --- SECTION 2: PENGALAMAN (Bagian Tengah) --- */
+        .experience-section {
+            display: flex;
+            padding: 5rem 8%;
+            gap: 3rem;
+            background-color: var(--light-cream);
+        }
+
+        .exp-col-1 {
+            flex: 1;
+        }
+
+        .exp-col-1 h2 {
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .exp-col-1 p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .exp-col-2 {
+            flex: 1.2;
+        }
+
+        .exp-col-2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .exp-col-3 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exp-col-3 img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .exp-col-3 p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid var(--text-dark);
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            align-self: flex-start;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--dark-brown);
+            color: var(--text-light);
+            border-color: var(--dark-brown);
+        }
+
+        /* --- SECTION 3: HIDANGAN (Bagian Bawah) --- */
+        .dishes-section {
+            display: flex;
+            padding: 5rem 8% 2rem 8%;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .dishes-text {
+            flex: 1;
+        }
+
+        .dishes-text h2 {
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .dishes-text p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .dishes-image {
+            flex: 1;
+        }
+
+        .dishes-image img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        /* --- SECTION 4: GALERI GRID --- */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 0 8% 5rem 8%;
+        }
+
+        .food-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        nav {
+            margin: 0;
+            padding: 1em;
+            text-align: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+ <nav class="navbar">
+        
+            <a href="order.html" >Beranda</a>
+            <a href="penjelasan.html">Penjelasan</a>
+            
+        
+    </nav>
+    <header class="hero">
+        <div class="container">
+            <div class="content-left">
+                <h1>Melestarikan Warisan Kuliner Indonesia</h1>
+                <h2>1. Biji Ketapang</h2>
+                <p>Biji ketapang adalah kue kering tradisional khas Betawi yang renyah dan gurih, menyerupai biji pohon ketapang.</p>
+                
+                <button class="accordion">Bahan-bahan Biji Ketapang</button>
+                <div class="panel">
+                    <ul>
+                        <li>500 gr Tepung terigu, 100 gr Mentega</li>
+                        <li>150 gr Gula pasir, 2 butir Telur</li>
+                        <li>65 ml Santan, Kelapa sangrai (opsional)</li>
+                        <li>Vanili & Garam secukupnya</li>
+                    </ul>
+                </div>
+
+                <button class="accordion">Langkah-langkah Membuat</button>
+                <div class="panel">
+                    <ol>
+                        <li>Kocok telur, gula, vanili, dan garam hingga larut.</li>
+                        <li>Masukkan margarin dan santan, aduk rata.</li>
+                        <li>Tambahkan tepung terigu sedikit demi sedikit, uleni hingga kalis.</li>
+                        <li>Pilin adonan memanjang, potong serong dengan gunting.</li>
+                        <li>Goreng dengan api sedang hingga coklat keemasan.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="sticky-box">
+                    <img src="https://i0.wp.com/resepkoki.id/wp-content/uploads/2017/05/Resep-Biji-ketapang.jpg" class="main-img" alt="Biji Ketapang">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="ornament-divider"></div>
+
+    <section class="section-padding light-section">
+        <div class="container" style="flex-direction: row-reverse;">
+            <div class="content-left">
+                <h2>2. Kolang - Kaling</h2>
+                <p>Manisan kenyal yang berasal dari biji pohon aren, sangat populer sebagai hidangan penyegar.</p>
+                
+                <button class="accordion">Bahan-bahan Kolang Kaling</button>
+                <div class="panel">
+                    <ul>
+                        <li>Kolang-kaling, Air cucian beras</li>
+                        <li>Sirup (cocopandan/sesuai selera)</li>
+                        <li>Gula pasir, Daun jeruk & Pandan</li>
+                    </ul>
+                </div>
+
+                <button class="accordion">Cara Membuat</button>
+                <div class="panel">
+                    <ol>
+                        <li>Rendam kolang-kaling di air cucian beras 1-4 jam untuk hilangkan lendir.</li>
+                        <li>Rebus dalam air mendidih 20 menit hingga empuk, lalu tiriskan.</li>
+                        <li>Masak kembali dengan sirup, gula, dan daun-daunan.</li>
+                        <li>Aduk hingga air menyusut dan warna meresap bening.</li>
+                        <li>Sajikan dingin lebih nikmat.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="content-right">
+                <div class="sticky-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1-76p9cO_eEXtSj89HrazkFKNqlgXQyh-Xw&s" class="main-img" alt="Kolang Kaling">
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+   
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script><div class="decorative-box"></div>
+
+  
+</body>
+</html>
+</body>
+</html>
